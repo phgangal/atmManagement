@@ -1,18 +1,16 @@
 package main.java.com.atm;
 
 import java.awt.List;
-import java.text.NumberFormat; // Helps with formatting doubles as currency
+import java.text.NumberFormat; 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner; // Will be used to get input from the user
+import java.util.Scanner; 
 
 public class ATM {
 	
 
 	public static void main(String[] args) {
 	
-		// Create and instantiate two Account objects
-
 		Account custChkAccount = new Account();
 		custChkAccount.setType("Checking");
 		custChkAccount.setBalance(0.00);
@@ -22,34 +20,29 @@ public class ATM {
 		custSavAccount.setBalance(0.00);
 		
 
-		NumberFormat formatter = NumberFormat.getCurrencyInstance(); // Creates the formatter object for currency
-		Scanner sc = new Scanner(System.in); // Creates the sc object to read user input
+		NumberFormat formatter = NumberFormat.getCurrencyInstance(); 
+		Scanner sc = new Scanner(System.in); 
 
-		boolean session = true; // This variable will break the (while) loop when false
+		boolean session = true; 
 		boolean transactionValidity = false;
 		HashMap billsDenominations = new Bills().getBillMap(); 
 
 		while (session) {
-
-			// Present the user with a menu of 5 options
 
 			System.out.print("\nATM Menu: \n \n"
 							 + "1. Deposit Money \n"
 							 + "2. Withdraw Money"
 							 );
 
-			int selection = sc.nextInt(); // assign the user's input to the selection variable
-			
-
-			// This switch block will handle one of five selections and deal with them appropriately
+			int selection = sc.nextInt(); 
 
 			switch (selection) {
 
-				// case 1 handles the depositing of money
+				// case 1 depositing of money
 
 				case 1:
 					System.out.print("Enter (1) for Savings or (2) for Checking: ");
-					int depAccount = sc.nextInt(); // Keeps track of which account to deposit money to
+					int depAccount = sc.nextInt(); 
 					ArrayList<String> denominationList = new ArrayList<String>();
 
 					if (depAccount == 1) {
@@ -87,11 +80,11 @@ public class ATM {
 
 				
 
-				// case 2 handles the withdrawal of money	
+				// case 2 withdrawal of money	
 
 				case 2:
 					System.out.print("\nEnter (1) for Savings or (2) for Checking: ");
-					int witAccount = sc.nextInt(); // Keeps track of which account to withdraw from
+					int witAccount = sc.nextInt(); 
 					ArrayList<String> denominationListWithdraw = new ArrayList<String>();
 					if (witAccount == 1) {
 
@@ -142,7 +135,7 @@ public class ATM {
 		if(transactionValue == 0 || transactionValue < 0) {
 			return isTranValid;
 		}
-		if(tranType == TransationType.WITHDRAWAL && transactionValue > accountIn.balance) {
+		if(tranType == TransationType.WITHDRAWAL && transactionValue > accountIn.getBalance()) {
 			return isTranValid;
 		}
 		return isTranValid = true;
